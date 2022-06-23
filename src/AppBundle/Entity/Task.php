@@ -40,6 +40,12 @@ class Task
      */
     private $isDone;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="tasks")
+     * @ORM\JoinColumn(name="task_id", referencedColumnName="id")
+     */
+    private $category;
+
     public function __construct()
     {
         $this->createdAt = new \Datetime();
