@@ -22,7 +22,6 @@ class UserType extends AbstractType
                 'first_options'  => ['label' => 'Mot de passe'],
                 'second_options' => ['label' => 'Tapez le mot de passe à nouveau'],
             ])
-            ->add('email', EmailType::class, ['label' => 'Adresse email'])
-        ;
+            ->add('email', EmailType::class, ['label' => 'Adresse email']);
     }
 }

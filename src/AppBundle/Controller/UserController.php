@@ -32,6 +32,7 @@ class UserController extends Controller
             $em = $this->getDoctrine()->getManager();
             $password = $this->get('security.password_encoder')->encodePassword($user, $user->getPassword());
             $user->setPassword($password);
+            $user->setRoles(array('ROLE_ADMIN'));
 
             $em->persist($user);
             $em->flush();

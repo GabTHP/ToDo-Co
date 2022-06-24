@@ -40,10 +40,13 @@ class User implements UserInterface
      */
     private $email;
 
+
+
     /**
-     * @ORM\Column(type="array", options={"default":"utilisateur"})
+     * @ORM\Column(type="json_array")
      */
-    private $Roles;
+    private $roles = [];
+
 
     /**
      * @ORM\OneToMany(targetEntity="Task", mappedBy="user")
@@ -99,10 +102,10 @@ class User implements UserInterface
     {
         $roles = $this->roles;
 
+        $roles[] = ["ROLE_USER"];
+
         return array_unique($roles);
     }
-
-
     public function eraseCredentials()
     {
     }
@@ -150,7 +153,7 @@ class User implements UserInterface
      */
     public function setRoles($roles)
     {
-        $this->Roles = $roles;
+        $this->roles = $roles;
 
         return $this;
     }
