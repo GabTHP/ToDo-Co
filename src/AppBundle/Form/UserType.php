@@ -33,7 +33,7 @@ class UserType extends AbstractType
                 array(
                     'label' => 'Role',
                     'multiple' => true,
-                    'expanded' => true,
+                    'expanded' => false,
                     'choices' => array(
                         'user' => "ROLE_USER",
                         'admin' => "ROLE_ADMIN"

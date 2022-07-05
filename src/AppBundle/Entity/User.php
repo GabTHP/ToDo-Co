@@ -102,8 +102,6 @@ class User implements UserInterface
     {
         $roles = $this->roles;
 
-        $roles[] =  "ROLE_USER";
-
         return $roles;
     }
     public function eraseCredentials()
