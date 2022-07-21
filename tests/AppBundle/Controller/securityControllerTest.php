@@ -12,23 +12,8 @@ class SecurityControllerTest extends WebTestCase
 
 
 
-
     public function testLoginPageUser()
     {
-        static::bootKernel();
-        $em = static::$kernel->getContainer()->get('doctrine.orm.entity_manager');
-        $user = new User();
-        $user->setUsername('gab');
-        $user->setEmail('anonymous@example.org');
-        $plainPassword = 'a';
-        $encoder = static::$kernel->getContainer()->get('security.password_encoder');
-        $encoded = $encoder->encodePassword($user, $plainPassword);
-        $user->setPassword($encoded);
-        $user->setRoles(['ROLE_USER']);
-
-        $em->persist($user);
-        $em->flush();
-
         $client = static::createClient();
 
         $client->request('GET', '/login');
@@ -37,13 +22,26 @@ class SecurityControllerTest extends WebTestCase
     }
     public function testLoginActionSuccess()
     {
+        static::bootKernel();
+        $em = static::$kernel->getContainer()->get('doctrine.orm.entity_manager');
+        $user = new User();
+        $user->setUsername('test-login');
+        $user->setEmail('test@login.fr');
+        $plainPassword = 'azerty';
+        $encoder = static::$kernel->getContainer()->get('security.password_encoder');
+        $encoded = $encoder->encodePassword($user, $plainPassword);
+        $user->setPassword($encoded);
+        $user->setRoles(['ROLE_USER']);
+
+        $em->persist($user);
+        $em->flush();
         $client = static::createClient();
 
         $crawler = $client->request('GET', '/login');
 
         $form = $crawler->selectButton('Se connecter')->form();
-        $form['_username'] = 'gab';
-        $form['_password'] = 'a';
+        $form['_username'] = 'test-login';
+        $form['_password'] = 'azerty';
         $client->submit($form);
 
         $crawler = $client->followRedirect();
