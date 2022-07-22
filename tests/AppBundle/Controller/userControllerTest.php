@@ -88,7 +88,6 @@ class UserControllerTest extends WebTestCase
 
     public function testEditActionUser()
     {
-        #connected user as "ROLE_USER"
         static::bootKernel();
         $em = static::$kernel->getContainer()->get('doctrine.orm.entity_manager');
 
@@ -101,8 +100,12 @@ class UserControllerTest extends WebTestCase
         $form['_password'] = 'azerty';
         $client->submit($form);
 
+        $em = static::$kernel->getContainer()->get('doctrine.orm.entity_manager');
+        $user = $em->getRepository('AppBundle:User')->findOneBy(array('username' => "users-test-user"));
+        $user_id = $user->getId();
+
         $crawler = $client->followRedirect();
-        $crawler = $client->request('GET', '/users/1/edit');
+        $crawler = $client->request('GET', "/users/$user_id/edit");
         $this->assertEquals(403, $client->getResponse()->getStatusCode());
     }
     #connected user as "ROLE_ADMIN"
@@ -160,7 +163,12 @@ class UserControllerTest extends WebTestCase
         $client->submit($form);
 
         $crawler = $client->followRedirect();
-        $crawler = $client->request('GET', '/users/2/edit');
+
+        $em = static::$kernel->getContainer()->get('doctrine.orm.entity_manager');
+        $user = $em->getRepository('AppBundle:User')->findOneBy(array('username' => "users-test-admin"));
+        $user_id = $user->getId();
+
+        $crawler = $client->request('GET', "/users/$user_id/edit");
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
         $form = $crawler->selectButton('Modifier')->form();
         $form['user[username]'] = 'user-edited';
