@@ -31,12 +31,16 @@
         "doctrine/doctrine-fixtures-bundle": "^3.0"
     },
     "require-dev": {
-        "sensio/generator-bundle": "^3.0",
+        "sensio/generator-bundle": "^3.0"
+
+    },
+    "require-test": {
         "symfony/phpunit-bridge": "^3.0",
         "phpunit/phpunit": "^5",
         "liip/functional-test-bundle": "^1.10",
         "symfony/process": "^3.4"
     },
+
     "scripts": {
         "symfony-scripts": [
             "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
