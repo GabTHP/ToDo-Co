@@ -28,8 +28,7 @@
             "require-dev": {
                 "phpstan/phpstan": "^0.12.55",
                 "psr/log": "^1.0",
-                "symfony/phpunit-bridge": "^4.2 || ^5",
-
+                "symfony/phpunit-bridge": "^4.2 || ^5"
             },
             "type": "library",
             "extra": {
