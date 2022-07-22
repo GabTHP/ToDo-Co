@@ -38,16 +38,6 @@
         "liip/functional-test-bundle": "^1.10",
         "symfony/process": "^3.4"
     },  
-    "scripts": {
-        "symfony-scripts": [
-        ],
-        "post-install-cmd": [
-            "@symfony-scripts"
-        ],
-        "post-update-cmd": [
-            "@symfony-scripts"
-        ]
-    },
     "extra": {
         "symfony-app-dir": "app",
         "symfony-bin-dir": "bin",
