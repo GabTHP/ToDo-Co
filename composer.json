@@ -37,11 +37,9 @@
         "phpunit/phpunit": "^5.7",
         "liip/functional-test-bundle": "^1.10",
         "symfony/process": "^3.4"
-    },
-    
+    },  
     "scripts": {
         "symfony-scripts": [
-
         ],
         "post-install-cmd": [
             "@symfony-scripts"
