@@ -29,12 +29,12 @@ class UserController extends Controller
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
+            $entitymanager = $this->getDoctrine()->getManager();
             $password = $this->get('security.password_encoder')->encodePassword($user, $user->getPassword());
             $user->setPassword($password);
 
-            $em->persist($user);
-            $em->flush();
+            $entitymanager->persist($user);
+            $entitymanager->flush();
 
             $this->addFlash('success', "L'utilisateur a bien été ajouté.");
 

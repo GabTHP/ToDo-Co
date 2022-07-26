@@ -59,5 +59,6 @@ class UserTest extends WebTestCase
         $user = $em->getRepository('AppBundle:User')->findOneBy(array('username' => "entityuser"));
         static::assertEquals("entity task", $user->getTasks()[0]->getTitle());
         $user->removeTask($user->getTasks()[0]);
+        static::assertEquals(null, $user->getTasks()[0]);
     }
 }

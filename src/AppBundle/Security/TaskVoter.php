@@ -44,7 +44,7 @@ class TaskVoter extends Voter
             $result = false;
         }
 
-        if ((in_array("ROLE_ADMIN", $user->getRoles()) === true) and ($task->getUser()->getUsername() === "anonymous")) {
+        if ((in_array("ROLE_ADMIN", $user->getRoles()) === true) && ($task->getUser()->getUsername() === "anonymous")) {
             $result = true;
         }
 
