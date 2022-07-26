@@ -1,6 +1,41 @@
-ToDoList
-========
+# Projet 7 : Améliorez un projet existant
 
-Base du projet #8 : Améliorez un projet existant
+Lien vers le projet : https://github.com/GabTHP/ToDo-Co
 
-https://openclassrooms.com/projects/ameliorer-un-projet-existant-1
+## Code Validation
+
+[![SymfonyInsight](https://insight.symfony.com/projects/2f1384be-e7c4-4a0b-82f7-43bdceaf58f5/big.svg)](https://insight.symfony.com/projects/2f1384be-e7c4-4a0b-82f7-43bdceaf58f5)
+
+Lien vers analyse du projet Symfony Insight : https://insight.symfony.com/projects/2f1384be-e7c4-4a0b-82f7-43bdceaf58f5
+
+## Versions :
+
+- Symfony : 3.4.0
+- PHP : 5.6
+
+## Installation du projet :
+
+1. Télecharcher le repository ToDo
+
+2. Placez dans à la racine du projet et lancer la commande ci-dessous pour installer les librairies du projet :
+
+   - composer install
+
+3. Mettre à jour ou créer le fichier params.yml, au sein du dossier : "/app/config". Utilisez le fichier /app/config/parameters.yml.dist comme modèle.
+
+4. Lancer les commandes ci-dessous pour créer la base de données :
+
+   - php bin/console doctrine:database:create
+   - php bin/console doctrine:migrations:migrate
+
+5. Utilisez la commande ci-dessous pour générer un jeu de données et bénéficier d'une démo de l'app Todo !
+
+- php bin/console doctrine:fixtures:load
+
+* Indentfiants : user : id = le user mdp = azerty amdin : id = gab mdp = azerty
+
+6. Lancer le serveur local avec la commande suivante :
+
+- symfony local:server:start
+
+Bonne utilisation !
