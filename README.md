@@ -4,9 +4,9 @@ Lien vers le projet : https://github.com/GabTHP/ToDo-Co
 
 ## Code Validation
 
-[![SymfonyInsight](https://insight.symfony.com/projects/2f1384be-e7c4-4a0b-82f7-43bdceaf58f5/big.svg)](https://insight.symfony.com/projects/2f1384be-e7c4-4a0b-82f7-43bdceaf58f5)
+[![SymfonyInsight](https://insight.symfony.com/projects/7f181bbe-ce4d-4513-a89f-2a4006ea754f/big.svg)](https://insight.symfony.com/projects/7f181bbe-ce4d-4513-a89f-2a4006ea754f)
 
-Lien vers analyse du projet Symfony Insight : https://insight.symfony.com/projects/2f1384be-e7c4-4a0b-82f7-43bdceaf58f5
+Lien vers analyse du projet Symfony Insight : https://insight.symfony.com/projects/7f181bbe-ce4d-4513-a89f-2a4006ea754f/analyses/40
 
 ## Versions :
 
@@ -32,7 +32,14 @@ Lien vers analyse du projet Symfony Insight : https://insight.symfony.com/projec
 
 - php bin/console doctrine:fixtures:load
 
-* Indentfiants : user : id = le user mdp = azerty amdin : id = gab mdp = azerty
+- Indentfiants :
+  > user :
+
+* id = le user
+* mdp = azerty
+  > admin :
+* id = gab
+* mdp = azerty
 
 6. Lancer le serveur local avec la commande suivante :
 
