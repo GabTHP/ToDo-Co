@@ -1,9 +1,21 @@
 # Learn more about services, parameters and containers at
 # http://symfony.com/doc/current/book/service_container.html
 parameters:
-#    parameter_name: value
+  #    parameter_name: value
+  _defaults:
+    autowire: true # Automatically injects dependencies in your services.
+    autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
 
 services:
-#    service_name:
-#        class: AppBundle\Directory\ClassName
-#        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
+  app.post_voter:
+    class: AppBundle\Security\TaskVoter
+    tags:
+      - { name: security.voter }
+    # small performance boost
+    public: false
+
+  AppBundle\DataFixtures\:
+    autowire: true
+    autoconfigure: true
+    resource: "../../src/AppBundle/DataFixtures"
+    tags: ["doctrine.fixture.orm", "controller.service_arguments"]
