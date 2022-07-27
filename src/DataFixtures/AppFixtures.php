@@ -1,22 +1,22 @@
 <?php
 
-namespace AppBundle\DataFixtures;
+namespace App\DataFixtures;
 
-use AppBundle\Entity\User;
-use AppBundle\Entity\Task;
+use App\Entity\User;
+use App\Entity\Task;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Bundle\FixturesBundle\FixtureGroupInterface;
 
-use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\Persistence\ObjectManager;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class AppFixtures extends Fixture
 {
-    private $encoder;
+    private $passwordEncoder;
 
-    public function __construct(UserPasswordEncoderInterface $encoder)
+    public function __construct(UserPasswordEncoderInterface $passwordEncoder)
     {
-        $this->encoder = $encoder;
+        $this->passwordEncoder = $passwordEncoder;
     }
 
     public function load(ObjectManager $em)
@@ -25,7 +25,7 @@ class AppFixtures extends Fixture
         $user->setUsername('gab');
         $user->setEmail('gab@hotmail.fr');
         $plainPassword = 'azerty';
-        $user->setPassword($this->encoder->encodePassword($user, $plainPassword));
+        $user->setPassword($this->passwordEncoder->encodePassword($user, 'azerty'));
         $user->setRoles(['ROLE_ADMIN']);
         $em->persist($user);
         $em->flush();
@@ -58,7 +58,7 @@ class AppFixtures extends Fixture
         $user->setUsername('le user');
         $user->setEmail('user@hotmail.fr');
         $plainPassword = 'azerty';
-        $user->setPassword($this->encoder->encodePassword($user, $plainPassword));
+        $user->setPassword($this->passwordEncoder->encodePassword($user, 'azerty'));
         $user->setRoles(['ROLE_USER']);
         $em->persist($user);
         $em->flush();
@@ -83,7 +83,7 @@ class AppFixtures extends Fixture
         $user->setUsername('anonymous');
         $user->setEmail('anon@hotmail.fr');
         $plainPassword = 'azerty';
-        $user->setPassword($this->encoder->encodePassword($user, $plainPassword));
+        $user->setPassword($this->passwordEncoder->encodePassword($user, 'azerty'));
         $user->setRoles(['ROLE_USER']);
         $em->persist($user);
         $em->flush();

@@ -1,30 +1,44 @@
 security:
   encoders:
-    App\Entity\User: bcrypt
+    App\Entity\User:
+      algorithm: auto
 
+  # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
   providers:
-    doctrine:
+    # used to reload user from session & other features (e.g. switch_user)
+    app_user_provider:
       entity:
-        class: App:User
+        class: App\Entity\User
         property: username
-
   firewalls:
     dev:
       pattern: ^/(_(profiler|wdt)|css|images|js)/
       security: false
-
     main:
-      anonymous: ~
-      pattern: ^/
+      anonymous: lazy
+      provider: app_user_provider
+      guard:
+        authenticators:
+          - App\Security\LoginFormAuthenticator
       form_login:
         login_path: login
-        check_path: login_check
-        always_use_default_target_path: true
-        default_target_path: /
+        check_path: login
+        csrf_token_generator: security.csrf.token_manager
       logout: ~
 
+      # where to redire
+
+      # activate different ways to authenticate
+      # https://symfony.com/doc/current/security.html#the-firewall
+
+      # https://symfony.com/doc/current/security/impersonating_user.html
+      # switch_user: true
+
+  # Easy way to control access for large sections of your site
+  # Note: Only the *first* access control that matches will be used
+
   access_control:
-    - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-    - { path: ^/users, roles: ROLE_ADMIN }
-    - { path: ^/tasks, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+    - { path: "^/login", roles: IS_AUTHENTICATED_ANONYMOUSLY }
+    - { path: "^/users", roles: IS_AUTHENTICATED_ANONYMOUSLY }
+    - { path: "^/tasks", roles: [ROLE_ADMIN, ROLE_USER] }
   #   - { path: ^/, roles: ROLE_USER }
