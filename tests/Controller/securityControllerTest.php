@@ -1,8 +1,8 @@
 <?php
 
-namespace Tests\AppBundle\Controller;
+namespace App\Tests\Controller;
 
-use AppBundle\Entity\User;
+use App\Entity\User;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
@@ -23,18 +23,6 @@ class SecurityControllerTest extends WebTestCase
     public function testLoginActionSuccess()
     {
         static::bootKernel();
-        $em = static::$kernel->getContainer()->get('doctrine.orm.entity_manager');
-        $user = new User();
-        $user->setUsername('test-login');
-        $user->setEmail('test@login.fr');
-        $plainPassword = 'azerty';
-        $encoder = static::$kernel->getContainer()->get('security.password_encoder');
-        $encoded = $encoder->encodePassword($user, $plainPassword);
-        $user->setPassword($encoded);
-        $user->setRoles(['ROLE_USER']);
-
-        $em->persist($user);
-        $em->flush();
         $client = static::createClient();
 
         $crawler = $client->request('GET', '/login');

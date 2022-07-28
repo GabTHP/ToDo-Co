@@ -1,13 +1,15 @@
 <?php
 
-namespace Tests\AppBundle\Controller;
+namespace App\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use Symfony\Component\HttpFoundation\Response;
 
-class DefaultControllerTest extends WebTestCase
+class HomeControllerTest extends WebTestCase
 {
     public function testIndex()
     {
+        self::bootKernel();
         $client = static::createClient();
 
         $client->request('GET', '/');

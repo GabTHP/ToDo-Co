@@ -1,44 +1,13 @@
 <?php
 
-namespace Tests\AppBundle\Controller;
+namespace App\Tests\Controller;
 
-use AppBundle\Entity\User;
+use App\Entity\User;
 use Doctrine\ORM\Tools\SchemaTool;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class UserControllerTest extends WebTestCase
 {
-    public function testloadUsers()
-    {
-
-        static::bootKernel();
-        $em = static::$kernel->getContainer()->get('doctrine.orm.entity_manager');
-
-        $user = new User();
-        $user->setUsername('users-test-user');
-        $user->setEmail('test@user.fr');
-        $plainPassword = 'azerty';
-        $encoder = static::$kernel->getContainer()->get('security.password_encoder');
-        $encoded = $encoder->encodePassword($user, $plainPassword);
-        $user->setPassword($encoded);
-        $user->setRoles(['ROLE_USER']);
-
-        $em->persist($user);
-        $em->flush();
-
-        $user = new User();
-        $user->setUsername('users-test-admin');
-        $user->setEmail('test@admin.fr');
-        $plainPassword = 'azerty';
-        $encoder = static::$kernel->getContainer()->get('security.password_encoder');
-        $encoded = $encoder->encodePassword($user, $plainPassword);
-        $user->setPassword($encoded);
-        $user->setRoles(['ROLE_ADMIN']);
-
-        $em->persist($user);
-        $em->flush();
-    }
-
 
     #non connected user tests
     public function testListAction()
@@ -101,7 +70,7 @@ class UserControllerTest extends WebTestCase
         $client->submit($form);
 
         $em = static::$kernel->getContainer()->get('doctrine.orm.entity_manager');
-        $user = $em->getRepository('AppBundle:User')->findOneBy(array('username' => "users-test-user"));
+        $user = $em->getRepository(User::class)->findOneBy(array('username' => "users-test-user"));
         $user_id = $user->getId();
 
         $crawler = $client->followRedirect();
@@ -165,7 +134,7 @@ class UserControllerTest extends WebTestCase
         $crawler = $client->followRedirect();
 
         $em = static::$kernel->getContainer()->get('doctrine.orm.entity_manager');
-        $user = $em->getRepository('AppBundle:User')->findOneBy(array('username' => "users-test-admin"));
+        $user = $em->getRepository(User::class)->findOneBy(array('username' => "users-test-admin"));
         $user_id = $user->getId();
 
         $crawler = $client->request('GET', "/users/$user_id/edit");

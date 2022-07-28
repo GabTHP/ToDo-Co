@@ -9,37 +9,6 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class TaskTest extends WebTestCase
 {
-    public function testload()
-    {
-
-        static::bootKernel();
-        $em = static::$kernel->getContainer()->get('doctrine.orm.entity_manager');
-
-        $user = new User();
-        $user->setUsername('entitytask-user');
-        $user->setEmail('entity@user.fr');
-        $plainPassword = 'azerty';
-        $encoder = static::$kernel->getContainer()->get('security.password_encoder');
-        $encoded = $encoder->encodePassword($user, $plainPassword);
-        $user->setPassword($encoded);
-        $user->setRoles(['ROLE_ADMIN']);
-
-        $em->persist($user);
-        $em->flush();
-
-        $task = new Task();
-        $task->setTitle('entity task');
-        $task->setContent('La description de la task');
-        $task->setUser($user);
-        $task->setIsDone(false);
-        $date = "01-09-2015";
-        $task->setCreatedAt(\DateTime::createFromFormat('d-m-Y', $date));
-
-        $em->persist($task);
-        $em->flush();
-    }
-
-
 
     public function testGet()
     {
