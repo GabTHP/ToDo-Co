@@ -1,10 +1,10 @@
 <?php
 
-namespace Tests\AppBundle\Entity;
+namespace App\Tests\Entity;
 
 
-use AppBundle\Entity\Task;
-use AppBundle\Entity\User;
+use App\Entity\Task;
+use App\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class TaskTest extends WebTestCase
@@ -14,7 +14,7 @@ class TaskTest extends WebTestCase
     {
         static::bootKernel();
         $em = static::$kernel->getContainer()->get('doctrine.orm.entity_manager');
-        $task = $em->getRepository('AppBundle:Task')->findOneBy(array('title' => "entity task"));
+        $task = $em->getRepository(Task::class)->findOneBy(array('title' => "entity task"));
         static::assertEquals("entity task", $task->getTitle());
         static::assertEquals("La description de la task", $task->getContent());
         static::assertEquals(false, $task->getIsDone());

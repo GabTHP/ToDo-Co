@@ -14,7 +14,8 @@ class SecurityControllerTest extends WebTestCase
 
     public function testLoginPageUser()
     {
-        $client = static::createClient();
+        self::bootKernel();
+        $client = self::createClient();
 
         $client->request('GET', '/login');
 
@@ -22,7 +23,6 @@ class SecurityControllerTest extends WebTestCase
     }
     public function testLoginActionSuccess()
     {
-        static::bootKernel();
         $client = static::createClient();
 
         $crawler = $client->request('GET', '/login');
@@ -30,7 +30,7 @@ class SecurityControllerTest extends WebTestCase
         $form = $crawler->selectButton('Se connecter')->form();
         $form['_username'] = 'test-login';
         $form['_password'] = 'azerty';
-        $client->submit($form);
+        $crawler = $client->submit($form);
 
         $crawler = $client->followRedirect();
         static::assertSame(200, $client->getResponse()->getStatusCode());
