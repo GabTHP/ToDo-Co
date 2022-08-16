@@ -159,6 +159,7 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
         $task->setContent('La description de la task');
         $task->setIsDone(false);
         $date = "01-09-2015";
+        $task->setUser($user);
         $task->setCreatedAt(\DateTime::createFromFormat('d-m-Y', $date));
 
         $em->persist($task);

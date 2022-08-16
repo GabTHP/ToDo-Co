@@ -14,7 +14,6 @@ class SecurityControllerTest extends WebTestCase
 
     public function testLoginPageUser()
     {
-        self::bootKernel();
         $client = self::createClient();
 
         $client->request('GET', '/login');

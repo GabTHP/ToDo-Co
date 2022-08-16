@@ -25,15 +25,10 @@ class TaskControllerTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $crawler = $client->request('GET', '/login');
-
-        $form = $crawler->selectButton('Se connecter')->form();
-        $form['_username'] = 'tasks-test-user';
-        $form['_password'] = 'azerty';
-        $client->submit($form);
-
-        $crawler = $client->followRedirect();
-        $crawler = $client->request('GET', '/tasks');
+        $client->request('GET', '/tasks', [], [], [
+            'PHP_AUTH_USER' => 'test-login',
+            'PHP_AUTH_PW'   => 'azerty',
+        ]);
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
     }
 
@@ -41,14 +36,10 @@ class TaskControllerTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $crawler = $client->request('GET', '/login');
-
-        $form = $crawler->selectButton('Se connecter')->form();
-        $form['_username'] = 'tasks-test-user';
-        $form['_password'] = 'azerty';
-        $client->submit($form);
-
-        $crawler = $client->followRedirect();
+        $client->request('GET', '/tasks', [], [], [
+            'PHP_AUTH_USER' => 'test-login',
+            'PHP_AUTH_PW'   => 'azerty',
+        ]);
         $crawler = $client->request('GET', '/tasks/create');
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
         $form = $crawler->selectButton('Ajouter')->form();

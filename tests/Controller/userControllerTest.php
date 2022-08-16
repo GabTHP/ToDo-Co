@@ -59,6 +59,9 @@ class UserControllerTest extends WebTestCase
     {
         static::bootKernel();
         $em = static::$kernel->getContainer()->get('doctrine.orm.entity_manager');
+        $user = $em->getRepository(User::class)->findOneBy(array('username' => "users-test-user"));
+        $user_id = $user->getId();
+        self::ensureKernelShutdown();
 
         $client = static::createClient();
 
@@ -69,9 +72,7 @@ class UserControllerTest extends WebTestCase
         $form['_password'] = 'azerty';
         $client->submit($form);
 
-        $em = static::$kernel->getContainer()->get('doctrine.orm.entity_manager');
-        $user = $em->getRepository(User::class)->findOneBy(array('username' => "users-test-user"));
-        $user_id = $user->getId();
+
 
         $crawler = $client->followRedirect();
         $crawler = $client->request('GET', "/users/$user_id/edit");
@@ -120,22 +121,23 @@ class UserControllerTest extends WebTestCase
         static::assertEquals("Superbe !", $crawler->filter('div.alert.alert-success strong')->text());
     }
 
-    public function testeditActionAdmin()
+    public function testEditActionAdmin()
     {
+        static::bootKernel();
+        $em = static::$kernel->getContainer()->get('doctrine.orm.entity_manager');
+        $user = $em->getRepository(User::class)->findOneBy(array('username' => "users-test-admin"));
+        $user_id = $user->getId();
+        self::ensureKernelShutdown();
+
         $client = static::createClient();
 
         $crawler = $client->request('GET', '/login');
-
         $form = $crawler->selectButton('Se connecter')->form();
         $form['_username'] = 'users-test-admin';
         $form['_password'] = 'azerty';
         $client->submit($form);
 
         $crawler = $client->followRedirect();
-
-        $em = static::$kernel->getContainer()->get('doctrine.orm.entity_manager');
-        $user = $em->getRepository(User::class)->findOneBy(array('username' => "users-test-admin"));
-        $user_id = $user->getId();
 
         $crawler = $client->request('GET', "/users/$user_id/edit");
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
@@ -146,6 +148,7 @@ class UserControllerTest extends WebTestCase
         $form['user[email]'] = 'user@edited.fr';
         $form['user[roles]'] = "ROLE_USER";
         $client->submit($form);
+        $crawler = $client->followRedirect();
         $crawler = $client->followRedirect();
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
         static::assertEquals("Superbe !", $crawler->filter('div.alert.alert-success strong')->text());
