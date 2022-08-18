@@ -60,7 +60,7 @@ class AppFixtures extends Fixture implements FixtureGroupInterface
         $em->flush();
 
         $user = new User();
-        $user->setUsername('le user');
+        $user->setUsername('simple-user');
         $user->setEmail('user@hotmail.fr');
         $plainPassword = 'azerty';
         $user->setPassword($this->passwordEncoder->encodePassword($user, 'azerty'));
