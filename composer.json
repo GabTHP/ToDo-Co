@@ -35,12 +35,12 @@
         "symfony/serializer": "4.4.*",
         "symfony/templating": "4.4.*",
         "symfony/dom-crawler": "4.4.*",
-        "symfony/apache-pack": "^1.0"
+        "symfony/apache-pack": "^1.0",
+        "doctrine/doctrine-fixtures-bundle": "^3.4"
     },
     "require-dev": {
         "symfony/maker-bundle": "^1.0",
         "symfony/phpunit-bridge": "4.2.*",
-        "doctrine/doctrine-fixtures-bundle": "^3.4",
         "symfony/debug-bundle": "4.4.*",
         "symfony/stopwatch": "4.4.*",
         "symfony/web-profiler-bundle": "4.4.*",
