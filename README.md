@@ -21,25 +21,36 @@ Lien vers analyse du projet Symfony Insight : https://insight.symfony.com/projec
 
    - composer install
 
-3. Mettre à jour ou créer le fichier params.yml, au sein du dossier : "/app/config". Utilisez le fichier /app/config/parameters.yml.dist comme modèle.
+3. Configuration de l'environnement :
+
+   - créez les fichiers .env.local et .env.local.test, à la racine du projet.
+   - Remplissez les fichier à partir en prenenat le fichier ".env" pour modèle. Le fichier .env.local correspond à l'ennvironnement de développement, et le fichier .env.local.test à l'environnement de test. Il faut donc utilisez deux bases de données différentes.
 
 4. Lancer les commandes ci-dessous pour créer la base de données :
 
    - php bin/console doctrine:database:create
    - php bin/console doctrine:migrations:migrate
 
-5. Utilisez la commande ci-dessous pour générer un jeu de données et bénéficier d'une démo de l'app Todo !
+5. Lancez les Fixtures :
 
-- php bin/console doctrine:fixtures:load
+- Environnement de dev -> php bin/console doctrine:fixtures:load --group=group-demo
+- Ennvironnement de test -> php bin/console --env=test doctrine:fixtures:load --group=group-test
 
-- Indentfiants :
-  > user :
+Remarque : Lors de l'éxecution des tests, les fixtures se lancent automatiquement ainsi que la purge des données
 
-* id = le user
-* mdp = azerty
-  > admin :
-* id = gab
-* mdp = azerty
+5. Jeu de données initial:
+
+Les fixturees permettent de bénéficier d'un jeu de données initiales avec la création de comptes utilisateurs et de tâches, les identifiants sopont les suivants :
+
+- user :
+
+  - id = simple-user
+  - mdp = azerty
+
+- admin :
+
+  - id = gab
+  - mdp = azerty
 
 6. Lancer le serveur local avec la commande suivante :
 
