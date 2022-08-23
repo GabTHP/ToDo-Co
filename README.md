@@ -1,4 +1,4 @@
-# Projet 7 : Améliorez un projet existant
+# Projet 8 : Améliorez un projet existant
 
 Lien vers le projet : https://github.com/GabTHP/ToDo-Co
 
@@ -6,7 +6,7 @@ Lien vers le projet : https://github.com/GabTHP/ToDo-Co
 
 [![SymfonyInsight](https://insight.symfony.com/projects/7f181bbe-ce4d-4513-a89f-2a4006ea754f/big.svg)](https://insight.symfony.com/projects/7f181bbe-ce4d-4513-a89f-2a4006ea754f)
 
-Lien vers analyse du projet Symfony Insight : https://insight.symfony.com/projects/7f181bbe-ce4d-4513-a89f-2a4006ea754f/analyses/40
+Lien vers analyse du projet Symfony Insight : https://insight.symfony.com/projects/7f181bbe-ce4d-4513-a89f-2a4006ea754f/analyses/63
 
 ## Versions :
 
