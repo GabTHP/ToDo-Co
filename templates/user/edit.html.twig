@@ -7,12 +7,19 @@
     <div class="row">
         {{ form_start(form, {'action' : path('user_edit', {'id' : user.id})}) }}
         {{ form_row(form.username)}}
-        {{ form_row(form.password)}}
         {{ form_row(form.email)}}
         {{ form_widget(form.roles)}}
         
 
-        <button type="submit" class="btn btn-success pull-right">Modifier</button>
-        {{ form_end(form) }}
+        <button type="submit" class="btn btn-success pull-right">Modifier utilisateur</button>
+        {{ form_end(form, {'render_rest': false}) }}
+    </div>
+    <br>
+    <h2>Modifier le mot de passe</h2>
+    <div class="row">
+        {{ form_start(form2, {'action' : path('user_edit', {'id' : user.id})}) }}
+        {{ form_row(form2.password)}}
+        <button type="submit" class="btn btn-success pull-right">Modifier Mot de passe</button>
+        {{ form_end(form2) }}
     </div>
 {% endblock %}

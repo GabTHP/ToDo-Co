@@ -53,15 +53,6 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
         $em->persist($user2);
         $em->flush();
 
-        $user3 = new User();
-        $user3->setUsername('anonymous');
-        $user3->setEmail('task@anonymous.fr');
-        $user3->setPassword($this->passwordEncoder->encodePassword($user, 'azerty'));
-        $user3->setRoles(['ROLE_USER']);
-
-        $em->persist($user3);
-        $em->flush();
-
         $task = new Task();
         $task->setTitle('task test 1');
         $task->setContent('La description de la task test 1');
@@ -109,8 +100,7 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
 
         $task = new Task();
         $task->setTitle('task to delete 3');
-        $task->setContent('Task a supprimé appertenant a anonymous');
-        $task->setUser($user2);
+        $task->setContent('Task a supprimé appertenant à personne');
         $task->setIsDone(false);
 
         $em->persist($task);

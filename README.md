@@ -1,4 +1,4 @@
-# Projet 7 : Améliorez un projet existant
+# Projet 8 : Améliorez un projet existant
 
 Lien vers le projet : https://github.com/GabTHP/ToDo-Co
 
@@ -6,12 +6,12 @@ Lien vers le projet : https://github.com/GabTHP/ToDo-Co
 
 [![SymfonyInsight](https://insight.symfony.com/projects/7f181bbe-ce4d-4513-a89f-2a4006ea754f/big.svg)](https://insight.symfony.com/projects/7f181bbe-ce4d-4513-a89f-2a4006ea754f)
 
-Lien vers analyse du projet Symfony Insight : https://insight.symfony.com/projects/7f181bbe-ce4d-4513-a89f-2a4006ea754f/analyses/40
+Lien vers analyse du projet Symfony Insight : https://insight.symfony.com/projects/7f181bbe-ce4d-4513-a89f-2a4006ea754f/analyses/63
 
 ## Versions :
 
-- Symfony : 3.4.0
-- PHP : 5.6
+- Symfony : 4.4
+- PHP : 7.4
 
 ## Installation du projet :
 
@@ -29,7 +29,7 @@ Lien vers analyse du projet Symfony Insight : https://insight.symfony.com/projec
 4. Lancer les commandes ci-dessous pour créer la base de données :
 
    - php bin/console doctrine:database:create
-   - php bin/console doctrine:migrations:migrate
+   - php bin/console doctrine:schema:update --force
 
 5. Lancez les Fixtures :
 

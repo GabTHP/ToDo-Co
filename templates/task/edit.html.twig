@@ -4,7 +4,13 @@
     <div class="row">
         {{ form_start(form, {'action' : path('task_edit', { 'id' : task.id })}) }}
             {{ form_widget(form) }}
-            <p>Autheur : {{ task.getUser().username }}</p>
+            <p>Autheur : 
+            
+            {% if task.getUser()%}
+                {{ task.getUser().username }}
+            {% else %}
+                Anonyme
+            {% endif %}
 
             <button type="submit" class="btn btn-success pull-right">Modifier</button>
         {{ form_end(form) }}
