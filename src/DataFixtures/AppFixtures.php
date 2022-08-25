@@ -84,19 +84,9 @@ class AppFixtures extends Fixture implements FixtureGroupInterface
         $em->persist($task);
         $em->flush();
 
-        $user = new User();
-        $user->setUsername('anonymous');
-        $user->setEmail('anon@hotmail.fr');
-        $plainPassword = 'azerty';
-        $user->setPassword($this->passwordEncoder->encodePassword($user, 'azerty'));
-        $user->setRoles(['ROLE_USER']);
-        $em->persist($user);
-        $em->flush();
-
         $task = new Task();
         $task->setTitle('exemple6');
         $task->setContent('On ne sait pas qui a créé cette tâche');
-        $task->setUser($user);
         $task->setIsDone(false);
         $em->persist($task);
         $em->flush();
@@ -106,7 +96,6 @@ class AppFixtures extends Fixture implements FixtureGroupInterface
         $task = new Task();
         $task->setTitle('exemple7');
         $task->setContent('On ne sait pas non plus qui a créé cette tâche');
-        $task->setUser($user);
         $task->setIsDone(false);
         $em->persist($task);
         $em->flush();

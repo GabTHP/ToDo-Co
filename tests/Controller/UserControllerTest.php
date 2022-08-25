@@ -141,10 +141,8 @@ class UserControllerTest extends WebTestCase
 
         $crawler = $client->request('GET', "/users/$user_id/edit");
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
-        $form = $crawler->selectButton('Modifier')->form();
+        $form = $crawler->selectButton('Modifier utilisateur')->form();
         $form['user[username]'] = 'user-edited';
-        $form['user[password][first]'] = 'azerty';
-        $form['user[password][second]'] = 'azerty';
         $form['user[email]'] = 'user@edited.fr';
         $form['user[roles]'] = "ROLE_USER";
         $client->submit($form);
