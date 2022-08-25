@@ -41,13 +41,16 @@ class TaskVoter extends Voter
     private function canDelete(Task $task, User $user)
     {
         $result = true;
-        if ($task->getUser()->getId() !== $user->getId()) {
-            $result = false;
+        if ($task->getUser()) {
+            if ($task->getUser()->getId() !== $user->getId()) {
+                $result = false;
+            }
+        } else {
+            if ((in_array("ROLE_ADMIN", $user->getRoles()) === true)) {
+                $result = true;
+            }
         }
 
-        if ((in_array("ROLE_ADMIN", $user->getRoles()) === true) && ($task->getUser()->getUsername() === "anonymous")) {
-            $result = true;
-        }
 
         return $result;
     }
