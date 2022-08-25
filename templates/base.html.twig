@@ -26,12 +26,24 @@
 
     <body>
         <nav class="navbar navbar-light navbar-fixed-top" style="background-color: #e3f2fd;" role="navigation">
+
             <div class="container">
                 <div class="navbar-header">
                     <a class="navbar-brand" href="#">To Do List app</a>
 
                     <img src="{{ asset('img/Logo_OpenClassrooms.png') }}" alt="OpenClassrooms" />
+                    
+
+
                 </div>
+                <div class="text-right" style="padding-top:15px">
+                    <a href="/tasks">Tâches</a>
+                    {% if ((app.user) and app.user.roles[0] == "ROLE_ADMIN") %}
+                    <a href="/users">Utilisateur</a>
+                    {% endif %}
+                </div>
+
+
             </div>
         </nav>
 
